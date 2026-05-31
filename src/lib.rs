@@ -1,7 +1,7 @@
 use is_executable::is_executable;
 use std::collections::HashSet;
 use std::env;
-use std::path::{MAIN_SEPARATOR, PathBuf};
+use std::path::PathBuf;
 use std::sync::OnceLock;
 
 const ECHO_MIN_LEN: usize = 4;
@@ -31,7 +31,7 @@ pub fn run_type(input: &str) {
     } else {
         let path = env::var("PATH").unwrap_or(String::new());
 
-        let dirs_to_check = path.split(MAIN_SEPARATOR);
+        let dirs_to_check = env::split_paths(&path);
         for dir in dirs_to_check {
             let file_path_buf = PathBuf::from(dir).join(argument);
             let file_path_str = file_path_buf.to_str().unwrap();
