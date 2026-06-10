@@ -21,7 +21,7 @@ pub fn run_type(input: &str, commands: &HashSet<&str>) -> String {
         let option_result = find_executable_in_path(argument);
 
         if option_result.is_none() {
-            return format_not_found(&argument);
+            return format!("{argument}: not found");
         }
 
         return format!("{argument} is {}", option_result.unwrap());
@@ -64,7 +64,7 @@ mod tests {
 
         let result = run_type("type foo", &commands);
 
-        assert_eq!("foo: command not found", result);
+        assert_eq!("foo: not found", result);
     }
 
     #[test]
