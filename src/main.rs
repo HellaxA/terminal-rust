@@ -1,5 +1,6 @@
 use codecrafters_shell::commands::echo_command::run_echo;
 use codecrafters_shell::commands::execute_command::run_execute;
+use codecrafters_shell::commands::pwd_command::run_pwd;
 use codecrafters_shell::commands::type_command::run_type;
 use codecrafters_shell::{self};
 use std::collections::HashSet;
@@ -33,6 +34,9 @@ fn process_input(input: &str, all_commands: &HashSet<&str>) {
         }
         "type" => {
             println!("{}", run_type(input, &all_commands));
+        }
+        "pwd" => {
+            println!("{}", run_pwd());
         }
         _ => {
             println!("{}", run_execute(input, command, split_input));
