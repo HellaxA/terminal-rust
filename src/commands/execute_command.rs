@@ -17,5 +17,3 @@ pub fn run_execute(input: &str, first_arg: &str, arg_iterator: SplitWhitespace) 
         .trim_end()
         .to_string();
 }
-
-pub mod test {}
