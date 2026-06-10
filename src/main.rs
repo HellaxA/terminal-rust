@@ -8,7 +8,7 @@ use std::io::{self, Write};
 use std::process;
 
 fn main() {
-    let all_commands = HashSet::from(["exit", "echo", "type"]);
+    let all_commands = HashSet::from(["exit", "echo", "type", "pwd"]);
     loop {
         print!("$ ");
         io::stdout().flush().unwrap();
