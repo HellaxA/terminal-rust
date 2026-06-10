@@ -12,5 +12,10 @@ pub fn run_execute(input: &str, first_arg: &str, arg_iterator: SplitWhitespace) 
 
     let output = Command::new(first_arg).args(arg_iterator).output().unwrap();
 
-    return String::from_utf8(output.stdout).unwrap();
+    return String::from_utf8(output.stdout)
+        .unwrap()
+        .trim_end()
+        .to_string();
 }
+
+pub mod test {}
