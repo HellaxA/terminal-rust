@@ -17,3 +17,28 @@ pub fn run_execute(input: &str, first_arg: &str, arg_iterator: SplitWhitespace) 
         .trim_end()
         .to_string();
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn execute_valid() {
+        let input = "echo braindead";
+        let mut split_input = input.split_whitespace();
+        let command = split_input.next().unwrap_or("invalid");
+        let result = run_execute(input, command, split_input);
+
+        assert_eq!("braindead", result);
+    }
+
+    #[test]
+    fn execute_invalid_command() {
+        let input = "a";
+        let mut split_input = input.split_whitespace();
+        let command = split_input.next().unwrap_or("invalid");
+        let result = run_execute(input, command, split_input);
+
+        assert_eq!(format!("a: command not found"), result);
+    }
+}
