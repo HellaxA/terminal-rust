@@ -9,7 +9,7 @@ use std::io::{self, Write};
 use std::process;
 
 fn main() {
-    let all_commands = HashSet::from(["exit", "echo", "type", "pwd"]);
+    let all_commands = HashSet::from(["exit", "echo", "type", "pwd", "cd"]);
     loop {
         print!("$ ");
         io::stdout().flush().unwrap();
