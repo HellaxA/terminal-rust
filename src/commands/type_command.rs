@@ -2,13 +2,12 @@ use std::collections::HashSet;
 
 use crate::{find_executable_in_path, format_not_found};
 
-const MIN_LEN: usize = 4;
 const ARG_START: usize = 5;
 
 pub fn run_type(input: &str, commands: &HashSet<&str>) -> String {
     let input = input.trim();
 
-    if input.len() <= MIN_LEN {
+    if input.len() < ARG_START {
         return format_not_found(input);
     }
 
