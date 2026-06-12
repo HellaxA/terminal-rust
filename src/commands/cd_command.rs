@@ -18,3 +18,20 @@ pub fn run_cd(command: &str, input: &str) -> String {
 
     return String::new();
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_cd_short_arg() {
+        let result = run_cd("cd", "cd");
+        assert_eq!("cd: No such file or directory", result);
+    }
+
+    #[test]
+    fn test_cd_dir_not_set() {
+        let result = run_cd("cd", "cd /asdf");
+        assert_eq!("cd: /asdf: No such file or directory", result);
+    }
+}
