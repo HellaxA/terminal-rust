@@ -1,5 +1,5 @@
 use std::env;
-use std::path::Path;
+use std::path::PathBuf;
 
 const ARG_START: usize = 3;
 
@@ -9,8 +9,13 @@ pub fn run_cd(command: &str, input: &str) -> String {
     }
     let argument = &input[ARG_START..];
 
-    let path = Path::new(argument);
-    let is_changed = env::set_current_dir(path).is_ok();
+    let path: PathBuf = if argument == "~" {
+        env::home_dir().unwrap()
+    } else {
+        PathBuf::from(argument)
+    };
+
+    let is_changed = env::set_current_dir(&path).is_ok();
 
     if !is_changed {
         return format!("{command}: {argument}: No such file or directory");
