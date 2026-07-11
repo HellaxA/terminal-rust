@@ -26,6 +26,8 @@ pub fn run_cd(command: &str, input: &str) -> String {
 
 #[cfg(test)]
 mod tests {
+    use crate::commands::pwd_command::run_pwd;
+
     use super::*;
 
     #[test]
@@ -38,5 +40,17 @@ mod tests {
     fn test_cd_dir_not_set() {
         let result = run_cd("cd", "cd /asdf");
         assert_eq!("cd: /asdf: No such file or directory", result);
+    }
+
+    #[test]
+    fn test_cd_home() {
+        let _result = run_cd("cd", "cd ~");
+        assert_eq!("/home/hellax", run_pwd());
+    }
+
+    #[test]
+    fn test_cd_dir() {
+        let _result = run_cd("cd", "cd /usr");
+        assert_eq!("/usr", run_pwd());
     }
 }
